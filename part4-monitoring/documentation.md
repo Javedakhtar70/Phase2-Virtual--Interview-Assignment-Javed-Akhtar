@@ -1,8 +1,10 @@
+# Part 4 — Monitoring
+
 Monitoring SQL Scripts for Data Pipeline Health Checks
 Microsoft SQL Server 2016+ | SSMS 20.2.1
 
-Part 4 — Monitoring
-Purpose
+
+## Purpose
 
 This section contains SQL-based monitoring logic designed to track the health of your data pipeline, validate data integrity, detect anomalies, and log pipeline performance over time.
 
@@ -21,7 +23,7 @@ Stored procedures that perform automated checks
 The SQL code used here comes from the uploaded file:
 /mnt/data/Part 4 Monitoring Code.sql
 
-Environment Requirements
+## Environment Requirements
 
 Microsoft SQL Server v16 or newer
 
@@ -37,7 +39,7 @@ Monitoring depends on the same raw dataset used in earlier tasks:
 
 events.csv
 
-Before running monitoring scripts:
+## Before running monitoring scripts:
 
 Import events.csv using SSMS
 Right-click database → Tasks → Import Flat File
@@ -49,11 +51,11 @@ Validate import:
 
 SELECT TOP 50 * FROM monitoring.events_staging;
 
-Files Included
+## Files Included
 
 Place these inside /part4-monitoring/code/:
 
-Part 4 Monitoring Code.sql — contains:
+## Part 4 Monitoring Code.sql — contains:
 
 Creation of monitoring schema
 
@@ -69,8 +71,9 @@ Stored procedure: usp_run_pipeline_monitoring
 
 SQL Agent job creation script (optional)
 
-How to Run (Step-by-Step)
-1. Create Schema and Tables
+## How to Run (Step-by-Step)
+
+## 1. Create Schema and Tables
 
 Run the first section of the SQL file to create:
 
@@ -81,9 +84,10 @@ monitoring.pipeline_metrics
 monitoring.pipeline_alerts
 
 Validation:
+
 SELECT * FROM sys.tables WHERE schema_id = SCHEMA_ID('monitoring');
 
-2. Load Events Using BULK INSERT
+## 2. Load Events Using BULK INSERT
 
 The SQL script includes a loader stored procedure:
 EXEC monitoring.usp_load_events_staging 
@@ -99,11 +103,11 @@ Parses timestamps
 
 Extracts JSON fields from event_data
 
-Validation:
+##  Validation:
 
 SELECT COUNT(*) FROM monitoring.events_staging;
 
-3. Run the Monitoring Procedure
+## 3. Run the Monitoring Procedure
 
 Execute the monitoring engine:
 
@@ -138,7 +142,7 @@ monitoring.pipeline_metrics
 Writes to:
 monitoring.pipeline_alerts
 
-4. Review Monitoring Output
+## 4. Review Monitoring Output
 Pipeline Metrics
 
 Logged per run:
@@ -152,7 +156,7 @@ SELECT TOP 50 *
 FROM monitoring.pipeline_alerts
 ORDER BY run_time DESC;
 
-Optional (Recommended): SQL Server Agent Job
+## Optional (Recommended): SQL Server Agent Job
 
 The SQL script includes job creation logic that:
 
@@ -199,7 +203,7 @@ EXEC msdb.dbo.sp_send_dbmail
     @subject = 'Pipeline Alert',
     @body = 'A data anomaly has been detected.';
 
-Troubleshooting
+## Troubleshooting
 BULK INSERT fails
 
 Ensure SQL Server service account has file access.
