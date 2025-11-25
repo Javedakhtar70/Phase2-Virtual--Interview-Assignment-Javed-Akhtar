@@ -70,12 +70,12 @@ def parse_args():
     return p.parse_args()
 
 
-def load_data(path, fmt):
+def load_data("C:\Users\Admin\Documents\New Job\New Applications\Puffy\Phase2\HoDIA - ST dataset-20251118T051305Z-1-001\HoDIA - ST dataset\events.csv", fmt):
     if fmt == "csv":
-        df = pd.read_csv(path, dtype=str)
+        df = pd.read_csv("C:\Users\Admin\Documents\New Job\New Applications\Puffy\Phase2\HoDIA - ST dataset-20251118T051305Z-1-001\HoDIA - ST dataset\events.csv", dtype=str)
     else:
         # newline delimited json
-        df = pd.read_json(path, lines=True, dtype=str)
+        df = pd.read_json("C:\Users\Admin\Documents\New Job\New Applications\Puffy\Phase2\HoDIA - ST dataset-20251118T051305Z-1-001\HoDIA - ST dataset\events.json", lines=True, dtype=str)
     return df
 
 
