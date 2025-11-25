@@ -1,6 +1,6 @@
-Part 1 — Data Quality
+# Part 1 — Data Quality
 
-Purpose
+## Purpose
 
 This folder contains scripts and notebooks used for data quality checks and cleaning. It demonstrates how input datasets were validated, common issues discovered, and corrective actions applied.
 
@@ -10,7 +10,7 @@ code/ — contains scripts and notebooks (e.g., dq_checks.py, dq_notebook.ipynb)
 
 documentation.md — this file
 
-Environment
+## Environment
 
 Python 3.9+ recommended
 
@@ -18,7 +18,7 @@ Install requirements:
 
 pip install -r part1-data-quality/code/requirements.txt
 
-How to run
+## How to run
 
 Place sample data in part1-data-quality/code/data/ (if included).
 
@@ -28,7 +28,7 @@ python part1-data-quality/code/dq_checks.py --input part1-data-quality/code/data
 
 For notebooks, open dq_notebook.ipynb and run cells in order.
 
-Output
+## Output
 
 report.csv — summary of quality checks
 
